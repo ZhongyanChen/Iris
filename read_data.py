@@ -18,4 +18,5 @@ if __name__ == "__main__":
     with open("setosa_data.csv", 'w', newline='') as output:
         writer = csv.DictWriter(output, fieldnames=field_names)
 
+        writer.writeheader()
         writer.writerows(setosa_data)
