@@ -19,22 +19,30 @@ def read_csv_data(csv_file_path):
 
 # This function takes the full Iris data and
 # write data of a given species into a new csv file.
-def write_data_by_species(species, data):
+def write_data_by_species(target_species, data):
 
-    species_data = []
+    target_species_data = []
     field_names = data['field_names']
 
     for row in data['content']:
-        if species == row['species']:
+        if target_species == row['species']:
             species_data.append(row)
 
-    with open(species + "_data.csv", 'w', newline='') as output:
+    with open(target_species + "_data.csv", 'w', newline='') as output:
         writer = csv.DictWriter(output, fieldnames=field_names)
 
         writer.writeheader()
-        writer.writerows(species_data)
+        writer.writerows(target_species_data)
 
 
 if __name__ == "__main__":
     data_path = "Data/Iris.csv"
 
+    full_data = read_csv_data(data_path)['content']
+
+    species_data = []
+
+    for record in full_data:
+        species_data.append(record['species'])
+
+    print({i: species_data.count(i) for i in species_data})
