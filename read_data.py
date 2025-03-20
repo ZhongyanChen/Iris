@@ -1,4 +1,5 @@
 import csv
+import statistics
 
 
 # This function reads the data stored in a given csv file with headings.
@@ -37,4 +38,14 @@ def write_data_by_species(species, data):
 
 if __name__ == "__main__":
     data_path = "Data/Iris.csv"
+
+    full_data = read_csv_data(data_path)['content']
+
+    petal_length_data = []
+
+    for line in full_data:
+        petal_length_data.append(float(line['petal_length']))
+
+    print(petal_length_data)
+    print(statistics.mean(petal_length_data))
 
