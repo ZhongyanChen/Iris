@@ -1,4 +1,5 @@
 import csv
+import statistics
 
 
 # This function reads the data stored in a given csv file with headings.
@@ -41,8 +42,12 @@ if __name__ == "__main__":
     full_data = read_csv_data(data_path)['content']
 
     species_data = []
+    petal_length_data = []
 
     for record in full_data:
         species_data.append(record['species'])
+        petal_length_data.append(float(record['petal_length']))
 
     print({i: species_data.count(i) for i in species_data})
+    print(statistics.mean(petal_length_data))
+
